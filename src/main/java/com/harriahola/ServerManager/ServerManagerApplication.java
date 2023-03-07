@@ -21,7 +21,7 @@ public class ServerManagerApplication {
 		return args -> {
 			serverRepository.save(
 				new Server(null, "192.168.0.0", "Fake server", "8 GB",
-				"FakeType", "http://localhost:8080/server/images/server1.png", Status.SERVER_UP)
+				"FakeType", "http://localhost:8080/images/server1.png", Status.SERVER_UP)
 			);
 		};
 	}
