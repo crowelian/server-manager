@@ -6,7 +6,6 @@ import java.util.Collection;
 
 import javax.transaction.Transactional;
 
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -69,7 +68,7 @@ public class ServerServiceImpl implements ServerService {
     public Boolean delete(Long id) {
         log.info("Deleting server by id: {}", id);
         serverRepository.deleteById(id);
-        return true;
+        return Boolean.TRUE;
     }
 
    
