@@ -5,8 +5,8 @@
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-6 title">
-                        <h2>Server Manager</h2>
-                        <span>...</span>
+                        <h2>{{title}}</h2>
+                        <span class="subtitle">{{subTitle}}</span>
                     </div>
                     <div class="col-sm-6 buttons">
                         <button type="button" class="btn btn-primary">Print Report</button>
@@ -28,13 +28,13 @@
                 </div>
             </div>
             <br>
-            <ng-container>
-                <ng-container>
+            <ng-container *ngIf="(appState$ | async) as appState" [ngSwitch]="appState.dataState">
+                <ng-container *ngSwitchCase="DataState.LOADING_STATE">
                     <div class="col-md-12 single-note-item text-center">
                         <div class="spinner-border text-info" role="status"></div>
                     </div>
                 </ng-container>
-                <ng-container>
+                <ng-container *ngSwitchCase="DataState.LOADED_STATE">
                     <table id="servers" class="table table-striped table-hover">
                         <thead>
                             <tr>
@@ -48,19 +48,19 @@
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody *ngFor="let server of appState.appData!.data.servers; let i = index">
                             <tr>
-                                <td><img src="" width="40" height="40" /></td>
-                                <td>ipAddress</td>
-                                <td>name</td>
-                                <td>memory</td>
-                                <td>type</td>
+                                <td><img src="{{server.imageUrl}}" width="40" height="40" /></td>
+                                <td>{{server.ipAddress}}</td>
+                                <td>{{server.name}}</td>
+                                <td>{{server.memory}}</td>
+                                <td>{{server.type}}</td>
                                 <td>
                                     <span class="badge"></span>
                                 </td>
                                 <td>
                                     <a style="cursor: pointer">
-                                        <i class="material-icons" title="Ping server">&#xE328;</i>
+                                        <i class="material-icons" title="Ping Server">&#xE328;</i>
                                         <i class="fa fa-spinner fa-spin" style="font-size: 24px"></i>
                                     </a>
                                 </td>
@@ -73,8 +73,8 @@
                         </tbody>
                     </table>
                 </ng-container>
-                <ng-container>
-                    <div class="alert-danger">
+                <ng-container *ngSwitchCase="DataState.ERROR_STATE">
+                    <div class="error-message alert-danger">
                         error
                     </div>
                 </ng-container>
