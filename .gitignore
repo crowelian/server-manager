@@ -60,3 +60,5 @@ build/
 # Get Images from somewhere
 *.png
 attributes.txt
+
+target/
