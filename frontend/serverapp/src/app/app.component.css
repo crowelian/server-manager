@@ -51,6 +51,7 @@ body {
     border: none;
     outline: none !important;
     margin-left: 10px;
+    min-height: 33px;
 }
 
 .table-title .btn i {
@@ -61,7 +62,7 @@ body {
 
 .table-title .btn span {
     float: left;
-    margin-top: 2px;
+    margin-top: 0px;
 }
 
 table.table tr th,
