@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { BehaviorSubject, catchError, map, Observable, of, startWith, throwError } from 'rxjs';
 import { DataState } from './enum/data.state.enum';
 import { Status } from './enum/status.enum';
 import { AppState } from './interface/app-state';
 import { CustomResponse } from './interface/custom-response';
+import { Server } from './interface/server';
 import { ServerService } from './service/server.service';
 
 @Component({
@@ -18,6 +20,8 @@ export class AppComponent implements OnInit {
   private filterSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
   private dataSubject: BehaviorSubject<CustomResponse> = new BehaviorSubject<CustomResponse>(null!);
   filterStatus$: Observable<string> = this.filterSubject.asObservable();
+  private isLoading: BehaviorSubject<Boolean> = new BehaviorSubject<Boolean>(false);
+  isLoading$: Observable<Boolean> = this.isLoading.asObservable();
 
   title = 'Server Manager';
   subTitle = '- remember your server -';
@@ -92,6 +96,30 @@ export class AppComponent implements OnInit {
         })
       );
   }
+
+  saveServer(serverForm: NgForm): void {
+    this.isLoading.next(true);
+    this.appState$ = this.serverService.save$(serverForm.value as Server)
+      .pipe(
+        map(response => {
+          this.dataSubject.next(
+            {...response, data: { servers: [response.data.server!, ...this.dataSubject.value.data.servers!] } }
+          ); // push the server from the response put it on index 0
+          if (document.getElementById('closeModal') !== null) {
+            document.getElementById('closeModal')!.click();
+          }
+          
+          this.isLoading.next(false);
+          serverForm.resetForm({ status: this.Status.SERVER_DOWN });
+          return { dataState: DataState.LOADED_STATE, appData: this.dataSubject.value }
+        }),
+        startWith({ dataState: DataState.LOADED_STATE, appData: this.dataSubject.value }),
+        catchError((error: string) => {
+          this.isLoading.next(false);
+          return of({ dataState: DataState.ERROR_STATE, error });
+        })
+      );
+}
 
 
 

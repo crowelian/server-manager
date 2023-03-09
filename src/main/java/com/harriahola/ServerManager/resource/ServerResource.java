@@ -6,6 +6,8 @@ import com.harriahola.ServerManager.enumeration.Status;
 import com.harriahola.ServerManager.model.Response;
 import com.harriahola.ServerManager.model.Server;
 
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -96,10 +98,11 @@ public class ServerResource { // Kind of like a controller!
         );
     }
 
-    @GetMapping(path = "/images/{fileName}", produces = IMAGE_PNG_VALUE)
+    @GetMapping(path = "../images/{fileName}", produces = IMAGE_PNG_VALUE)
     public byte[] getServerImage(@PathVariable("fileName") String fileName) throws IOException {
-        String staticFolder = "/";
-        return Files.readAllBytes(Paths.get(staticFolder + fileName));
+        Resource resource = new ClassPathResource("static/images/"+fileName);
+        String path = resource.getURL().getPath();
+        return Files.readAllBytes(Paths.get(path));
     }
 
 }
