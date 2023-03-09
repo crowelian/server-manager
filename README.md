@@ -2,7 +2,13 @@
 Server Manager with Java, Spring Boot and Angular
 
 ## Description
-A list of servers ip addresses. Can be pinged.
+A list of servers ip addresses. So not really a "Server Manager" but a list of servers / devices with
+the ability to ping a server / device.
+
+## TODO
+- add different image to differentiate server or device
+- check if ip is local or remote and show it eg. with color in ip column
+- add link to ip = click to open in a new tab?
 
 ## Usage
 1. start the Docker database container
