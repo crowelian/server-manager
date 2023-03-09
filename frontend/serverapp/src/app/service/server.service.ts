@@ -66,6 +66,13 @@ export class ServerService {
 
   private handleError(error: HttpErrorResponse): Observable<never> {
     console.log(error);
-    return throwError(`Server Service Error code: ${error.status}`);
+    return throwError(`Server Service Error code: ${error.status}
+     --- 
+    msg: ${error.message}
+     --- 
+    [${JSON.stringify(error.error.error)}]
+    
+    `);
+    
   }
 }
