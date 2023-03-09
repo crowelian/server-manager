@@ -140,4 +140,47 @@ deleteServer(server: Server): void {
     );
 }
 
+
+printReport(): void {
+  // Print as PDF
+  //window.print();
+
+  // Print as Excel
+  let dataType = 'application/vnd.ms-excel.sheet.macroEnabled.12';
+  let tableSelect = document.getElementById('servers');
+  if (tableSelect === undefined) return;
+  const icons = tableSelect?.querySelector("tbody tr td a i");
+
+  this.removeItalicElements(tableSelect!); // better way would be to remove the cells maybe, or tag the cells that you want to print.
+
+  let tableHtml = tableSelect!.outerHTML.replace(/ /g, '%20');
+  tableHtml.replace('&#xE328;', '---');
+  
+  let downloadLink = document.createElement('a');
+  document.body.appendChild(downloadLink);
+  downloadLink.href = 'data:' + dataType + ', ' + tableHtml;
+  downloadLink.download = 'server-report.xls';
+  downloadLink.click();
+  document.body.removeChild(downloadLink);
+}
+
+removeItalicElements(node: Node | HTMLElement): void {
+	if (node.nodeType === Node.TEXT_NODE) {
+    	// If it's a text node, do nothing
+    	return;
+	}
+
+	if ((node as Element).tagName === 'I') {
+    	// If it's an i element, remove it
+    	node.parentNode!.removeChild(node);
+	} else {
+    	// If it's not an i element, check its child nodes
+    	const childNodes = node.childNodes;
+    	for (let i = 0; i < childNodes.length; i++) {
+        	this.removeItalicElements(childNodes[i]);
+    	}
+	}
+}
+
+
 }
