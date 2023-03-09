@@ -6,7 +6,8 @@ A list of servers ip addresses. So not really a "Server Manager" but a list of s
 the ability to ping a server / device.
 
 ## TODO
-- FIX image fetch in ServerResource.java
+- FIX image fetch in ServerResource.java (the hack)
+- FIX server not keeping the data
 - add different image to differentiate server or device
 - check if ip is local or remote and show it eg. with color in ip column
 - add link to ip = click to open in a new tab?
