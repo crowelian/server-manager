@@ -5,19 +5,12 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { ReplacePipe } from './utils/ReplacePipe';
+import { NotifierModule } from 'angular-notifier';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ReplacePipe
-  ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    FormsModule,
-
-  ],
+  declarations: [AppComponent, ReplacePipe],
+  imports: [BrowserModule, HttpClientModule, FormsModule, [NotifierModule]],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
