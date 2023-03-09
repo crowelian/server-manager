@@ -10,7 +10,7 @@ the ability to ping a server / device.
 - FIX server not keeping the data
 - add different image to differentiate server or device
 - check if ip is local or remote and show it eg. with color in ip column
-- add link to ip = click to open in a new tab?
+
 
 ## Usage
 1. start the Docker database container
