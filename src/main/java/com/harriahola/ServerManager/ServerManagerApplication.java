@@ -26,8 +26,8 @@ public class ServerManagerApplication {
 	CommandLineRunner run(ServerRepository serverRepository) {
 		return args -> {
 			serverRepository.save(
-					new Server(null, "192.168.0.0", "Fake server", "8 GB",
-							"FakeType", "http://localhost:8080/images/server1.png", Status.SERVER_UP));
+					new Server(null, "192.168.4.182", "Windows 11", "16 GB",
+							"Local Machine", "http://localhost:8080/images/server1.png", Status.SERVER_UP));
 			serverRepository.save(
 					new Server(null, "54.37.72.5", "Outer fake server", "32 GB",
 							"TypeOfFake", "http://localhost:8080/images/server2.png", Status.SERVER_DOWN));
