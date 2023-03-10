@@ -8,7 +8,6 @@ the ability to ping a server / device.
 ## TODO
 - FIX image fetch in ServerResource.java (the hack)
 - add different image to differentiate server or device
-- add possibility to add domain name instead of ip address
 
 ## Usage
 1. start the Docker database container
