@@ -8,7 +8,6 @@ the ability to ping a server / device.
 ## TODO
 - FIX image fetch in ServerResource.java (the hack)
 - add different image to differentiate server or device
-- check if ip is local or remote and show it eg. with color in ip column
 
 
 ## Usage

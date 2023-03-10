@@ -241,4 +241,19 @@ export class AppComponent implements OnInit {
       }
     }
   }
+
+  checkLocalIpAddress(ipAddress: string): Boolean {
+    if (ipAddress.startsWith("192.168.") || ipAddress.startsWith("10.") || ipAddress.startsWith("172.") || ipAddress.includes("localhost")) {
+      return true;
+    }
+    return false;
+  }
+
+  isValidIpAddress(ipAddress: string) {
+    const ipAddressRegex = /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+    return ipAddressRegex.test(ipAddress);
+  }
+  
+
+
 }

@@ -51,7 +51,7 @@
                         <tbody *ngFor="let server of appState.appData!.data.servers; let i = index">
                             <tr>
                                 <td><img [src]="server.imageUrl" [alt]="server.name" width="40" height="40" /></td>
-                                <td><a href="http://{{server.ipAddress}}" target="_blank">{{server.ipAddress}}</a></td>
+                                <td><a href="http://{{server.ipAddress}}" target="_blank" class="ipAddress badge" [ngClass]="[checkLocalIpAddress(server.ipAddress) ? ' badge-info' : isValidIpAddress(server.ipAddress) ? ' badge-warning' : 'badge-danger']">{{server.ipAddress}}</a></td>
                                 <td>{{server.name}}</td>
                                 <td>{{server.memory}}</td>
                                 <td>{{server.type}}</td>

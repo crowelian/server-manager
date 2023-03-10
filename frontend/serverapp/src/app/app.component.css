@@ -283,6 +283,14 @@ table.table .avatar {
     padding: 15px;
 }
 
+#servers > tbody > tr > td > a.ipAddress {
+    color: #fff;
+}
+
+#servers > tbody > tr > td > a.ipAddress.badge-warning {
+    background-color: #fd7e14;
+}
+
 .pointer {
     cursor: pointer;
 }
