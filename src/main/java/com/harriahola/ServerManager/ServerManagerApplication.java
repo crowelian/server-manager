@@ -39,10 +39,11 @@ public class ServerManagerApplication {
 	public CorsFilter corsFilter() {
 		final String angularUrlPort = "http://localhost:4200";
 		final String someOtherUrlAndPort = "http://localhost:3000";
+		final String htmlPort = "http://localhost:4230";
 
 		CorsConfiguration corsConfiguration = new CorsConfiguration();
 		corsConfiguration.setAllowCredentials(true);
-		corsConfiguration.setAllowedOrigins(Arrays.asList(angularUrlPort, someOtherUrlAndPort));
+		corsConfiguration.setAllowedOrigins(Arrays.asList(angularUrlPort, someOtherUrlAndPort, htmlPort));
 		corsConfiguration.setAllowedHeaders(Arrays.asList("Origin", "Access-Control-Allow-Origin", "Content-Type",
 				"Accept", "Jwt-Token", "Authorization", "Origin, Accept", "X-Requested-With",
 				"Access-Control-Request-Method", "Access-Control-Request-Headers"));
