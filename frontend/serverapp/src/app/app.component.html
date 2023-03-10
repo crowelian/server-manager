@@ -1,7 +1,7 @@
 <!-- <div>{{ appState$ | async | json }}</div> -->
 <div class="container-xl">
     <div class="table-responsive">
-        <div class="table-wrapper">
+        <div class="table-wrapper" [ngClass]="{ 'bg-secondary': (appState$ | async)?.dataState === DataState.LOADING_STATE, 'bg-danger': (appState$ | async)?.dataState === DataState.ERROR_STATE }">
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-6 title">
